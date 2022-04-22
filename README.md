@@ -24,6 +24,37 @@
 }
 ```
 
+ 	{
+    
+    "firstName" : "arun",
+    "lastName" : "sharma",
+    "mobile" : "8708996615",
+    "emailId" : "arunsharma@gmail.com",
+    "password" : "password666",
+    "gender" : "male",
+	"isDeleted": false,  
+    "age" : 23
+
+}
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjYyOWU2OWQzMjBlMmU5NDdjNGQ5ZDciLCJiYXRjaCI6InRob3JpdW0iLCJvcmdhbmlzYXRpb24iOiJGVW5jdGlvblVwIiwiaWF0IjoxNjUwNjMwNDMyfQ.tfQvorK9vNtmyzS9z27k1ExiXGLXwGFor5Ebhyc9z_I
+
+
+ 	{
+    
+    "firstName" : "mitesh",
+    "lastName" : "chawdhary",
+    "mobile" : "8708999915",
+    "emailId" : "shrimiteshchaudhary@gmail.com",
+    "password" : "password586",
+    "gender" : "male",
+	"isDeleted": false,  
+    "age" : 21
+
+}
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjYyNzU5Y2QzMjBlMmU5NDdjNGQ5ZDUiLCJiYXRjaCI6InRob3JpdW0iLCJvcmdhbmlzYXRpb24iOiJGVW5jdGlvblVwIiwiaWF0IjoxNjUwNjMwMzc4fQ.xjhdwKoNt5ijnKALz78KYhU1EPYObasKPFwvYt8qbv0
+
 
 - Write a **POST api /users** to register a user from the user details in request body. 
 - Write a ***POST api /login** to login a user that takes user details - email and password from the request body. If the credentials don't match with any user's data return a suitable error.
