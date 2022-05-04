@@ -36,6 +36,15 @@ const createCollege = async function (req, res) {
                 .status(400)
                 .send({ status: false, message: "logoLink is required" });
         }
+
+        const validlogoLink = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/.test(req.body.logoLink)
+        if(!validlogoLink){
+            return res
+            .status(404)
+            .send({ status: false, message: `Invalid url` });
+
+        }
+
         let name = await collegeModel.findOne({ name: req.body.name });
         console.log(name);
         if (name) {
@@ -54,6 +63,7 @@ const createCollege = async function (req, res) {
 
 const collegeDetails = async function (req, res) {
     try {
+        //reading inputs
         const collegeName = req.query.collegeName;
         if (!collegeName) {
             return res
@@ -61,6 +71,7 @@ const collegeDetails = async function (req, res) {
                 .send({ status: false, message: "enter college to filter" });
         }
 
+        //
         const college = await collegeModel.findOne({ name: collegeName, isDeleted:false});
         if(!college){
             res.status(404).send({status:false,message: "No college with this name"})
