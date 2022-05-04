@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 
 const collegeSchema = new mongoose.Schema(
   {
-    name: { type: String, trim: true },
+    name: {
+      type: String,
+      trim: true,
+    },
     fullName: {
       type: String,
       trim: true,
@@ -10,9 +13,10 @@ const collegeSchema = new mongoose.Schema(
     logoLink: {
       type: String,
     },
-    isDeleted: { type: Boolean, default: false }
-  
-
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
