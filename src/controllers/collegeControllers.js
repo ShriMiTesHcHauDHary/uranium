@@ -29,6 +29,7 @@ const createCollege = async function (req, res) {
         message: `fullName is required as example - Indian Institute of Technology, Hyderabad `,
       });
     }
+    
     if (!req.body.logoLink) {
       return res
         .status(400)
@@ -59,7 +60,7 @@ const createCollege = async function (req, res) {
   }
 };
 
-//=========================================2 api ==================================================
+//=========================================3 api ==================================================
 
 const collegeDetails = async function (req, res) {
   try {
@@ -77,7 +78,7 @@ const collegeDetails = async function (req, res) {
       isDeleted: false,
     });
     if (!college) {
-      res
+      return res
         .status(404)
         .send({ status: false, message: "No college with this name" });
     }
@@ -89,10 +90,19 @@ const collegeDetails = async function (req, res) {
     };
     const Id = college._id;
     const interns = await internModel.find({ collegeId: Id, isDeleted: false });
-    if (interns) {
+    
+    if (interns.length>0){
       filtercollege.interests = interns;
       res.status(200).send({ status: true, data: filtercollege });
     }
+
+    if (interns.length===0){
+      interns.push("no intern applied yet")
+      filtercollege.interests = interns;
+      res.status(200).send({ status: true, data: filtercollege });
+    }
+
+  
   } catch (error) {
     res.status(500).send({ status: false, msg: error.message });
   }
@@ -100,3 +110,5 @@ const collegeDetails = async function (req, res) {
 
 module.exports.createCollege = createCollege;
 module.exports.collegeDetails = collegeDetails;
+
+

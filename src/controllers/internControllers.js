@@ -11,7 +11,7 @@ const isValidRequestBody = function (requestbody) {
   return Object.keys(requestbody).length > 0;
 };
 
-//=========================================3 api ==================================================
+//=========================================2 api ==================================================
 
 const createIntern = async function (req, res) {
   try {
@@ -70,6 +70,7 @@ const createIntern = async function (req, res) {
         });
       return;
     }
+    
     if (!isValid(mobile)) {
       res
         .status(400)
