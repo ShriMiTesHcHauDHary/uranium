@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose");//importing mongoose(object data modeling library)
 const collegeModel = require("./collegeModel");
-const ObjectId = mongoose.Schema.Types.ObjectId;
-
+const ObjectId = mongoose.Schema.Types.ObjectId;//objectId validation
+//creating structure of documents
 const internSchema = new mongoose.Schema(
   {
     name: {
@@ -28,4 +28,4 @@ const internSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("intern", internSchema);
+module.exports = mongoose.model("intern", internSchema);//naming new collection made Schema

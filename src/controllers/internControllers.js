@@ -27,7 +27,7 @@ const createIntern = async function (req, res) {
       return;
     }
     //  EXTRACT PARAMS
-    const { name, email, mobile, collegeName } = requestBody;
+    const { name, email, mobile, collegeName } = requestBody;//ignore not find function
 
     //  VALIDATION
     if (!isValid(name)) {
