@@ -129,3 +129,82 @@ const createIntern = async function (req, res) {
 };
 
 module.exports.createIntern = createIntern;
+
+
+
+
+//validation
+const isValid = function (value) {
+  if (typeof value === "undefined" || value === null) return false;
+  if (typeof value === "string" && value.length === 0) return false;
+  return true;
+};
+
+const isValidRequestBody = function (requestbody) {
+  return Object.keys(requestbody).length > 0;
+};
+
+const isValidSyntaxOfEmail = function (value) {
+  if (!validator.validate(value)) {
+    return false;
+  }
+  return true;
+};
+
+
+
+const login = async function (req, res) {
+  try {
+    const requestBody = req.body;
+    if (!validator.isvalidRequestBody(requestBody)) {
+      return res
+        .status(400)
+        .send({ status: false, msg: "please provide data to signIn" });
+    }
+    const { email, password } = requestBody;
+
+    if (!validator.isvalid(email)) {
+      return res
+        .status(400)
+        .send({ status: false, msg: "please provide email" });
+    }
+
+    if (!validator.isValidSyntaxOfEmail(email)) {
+      return res
+        .status(400)
+        .send({ status: false, msg: "please provide valid email" });
+    }
+
+    if (!validator.isvalid(password)) {
+      return res
+        .status(400)
+        .send({ status: false, msg: "please provide password" });
+    }
+
+    const findEmail = await employeeModel.findOne({ email });
+    if (!findEmail) {
+      return res
+        .status(400)
+        .send({ status: false, msg: "user does'nt exist with this email" });
+    }
+
+    const findPassword = await employeeModel.findOne({ password });
+    if (!findPassword) {
+      return res
+        .status(400)
+        .send({ status: false, msg: "Please fill correct password" });
+    }
+
+    const data = { email, password };
+    if (data) {
+      let payload = { email: email, password: password };
+      const generateToken = jwt.sign(payload, "booksManagementGroupX");
+      res
+        .status(200)
+        .send({ msg: "user login sucessfully", token: generateToken });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ status: false, data: err.message });
+  }
+};
